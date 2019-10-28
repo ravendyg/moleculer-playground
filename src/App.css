@@ -20,3 +20,31 @@
 .App-link {
   color: #09d3ac;
 }
+
+.page {
+  text-align: center;
+}
+
+table {
+  margin: 50px auto 10px;
+}
+td {
+  border-bottom: 1px solid lightgray;
+  min-width: 200px;
+}
+thead>tr>td {
+  text-align: center;
+}
+
+.pagination-link {
+  cursor: pointer;
+  color: darkblue;
+}
+
+.form-row {
+  margin-top: 1rem;
+}
+.form-row>label>span {
+  width: 64px;
+  display: inline-block;
+}
