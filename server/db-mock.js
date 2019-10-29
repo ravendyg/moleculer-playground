@@ -25,6 +25,11 @@ module.exports = {
     };
   },
   createContact(name, email) {
+    for (const user of data) {
+      if (user.email === email) {
+        return -1;
+      }
+    }
     data.push({
       id: data.length + 1,
       name,
