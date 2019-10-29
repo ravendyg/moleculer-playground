@@ -12,7 +12,7 @@ if (!fs.existsSync(dataDir)) {
 let data = [];
 try {
   data = JSON.parse(fs.readFileSync(dataFile, { encoding: 'utf8' }));
-} catch {}
+} catch (e) {}
 
 module.exports = {
   getContacts(start, size) {
