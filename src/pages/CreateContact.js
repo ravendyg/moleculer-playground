@@ -6,20 +6,18 @@ import {
   useHistory,
 } from 'react-router-dom';
 
-import { createContact } from '../api';
-
 function validate(name, email) {
   return name && email;
 }
 
-export function CreateContact() {
+export function CreateContact({ api }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const history = useHistory();
 
   async function submit(e) {
     e.preventDefault();
-    await createContact(name, email);
+    await api.createContact(name, email);
     history.goBack();
   }
 

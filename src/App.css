@@ -48,3 +48,6 @@ thead>tr>td {
   width: 64px;
   display: inline-block;
 }
+.loader {
+  margin: 1rem;
+}

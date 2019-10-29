@@ -8,19 +8,20 @@ import {
 import { Contacts } from './pages/Contacts';
 import { CreateContact } from './pages/CreateContact';
 import './App.css';
+import { api } from './api';
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path='/'>
-          <Contacts/>
+          <Contacts api={api}/>
         </Route>
         <Route path='/create'>
-          <CreateContact/>
+          <CreateContact api={api}/>
         </Route>
         <Route path='/:page'>
-          <Contacts/>
+          <Contacts api={api}/>
         </Route>
         <Route path='/*'>
           <Redirect to='/'/>

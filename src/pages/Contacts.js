@@ -1,5 +1,6 @@
 // @ts-check
 import React, {
+  Fragment,
   useState,
   useEffect,
 } from 'react';
@@ -8,57 +9,19 @@ import {
   useHistory,
   Link,
 } from 'react-router-dom';
+
+import { Pagination } from '../components/Pagination';
+import { Table } from '../components/Table';
 import { config } from '../config';
 
-import { fetchContacts } from '../api';
-
-function Contact(props) {
-  const {
-    name,
-    email,
-  } = props.contact;
-
-  return (
-    <tr>
-      <td>{name}</td>
-      <td>{email}</td>
-    </tr>
-  )
-}
-
-function Pagination(props) {
-  const {
-    page,
-    setPage,
-    hasNext,
-  } = props;
-
-  return (
-    <div style={{textAlign: 'center'}}>
-      {page > 0 &&
-        <span
-          className='pagination-link'
-          onClick={() => setPage(page - 1)}
-        >previous</span>
-      }
-      <span style={{margin: '0 8px'}}>{page + 1}</span>
-      {hasNext &&
-        <span
-          className='pagination-link'
-          onClick={() => setPage(page + 1)}
-        >next</span>
-      }
-    </div>
-  )
-}
-
-export function Contacts() {
+export function Contacts({ api }) {
   const { page: _page } = useParams();
   const page = (_page && parseInt(_page, 10)) || 0;
   const history = useHistory();
 
   const [contacts, setContacts] = useState([]);
   const [hasNext, setHasNext] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   function navigate(page) {
     if (page) {
@@ -70,38 +33,30 @@ export function Contacts() {
 
   useEffect(() => {
     async function getContacts() {
-      const { data, hasMore } = await fetchContacts(page, config.PAGE_SIZE);
+      setLoading(true);
+      const { data, hasMore } = await api.fetchContacts(page, config.PAGE_SIZE);
       setContacts(data);
       setHasNext(hasMore);
+      setLoading(false);
     }
     getContacts();
-  }, [page]);
+  }, [api, page]);
 
   return (
     <div className='page'>
       <Link to='/create'>Create contact</Link>
 
-      <table>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Email</td>
-          </tr>
-        </thead>
-        <tbody>
-          {contacts.map(contact => (
-            <Contact
-              key={contact.id}
-              contact={contact}
-            />
-          ))}
-        </tbody>
-      </table>
-      <Pagination
-        page={page}
-        hasNext={hasNext}
-        setPage={navigate}
-      />
+      {loading && <div className='loader'>Loading ...</div>}
+
+      {!loading && <Fragment>
+        <Table contacts={contacts}/>
+        <Pagination
+          page={page}
+          hasNext={hasNext}
+          setPage={navigate}
+        />
+      </Fragment>}
     </div>
   );
 }
+
