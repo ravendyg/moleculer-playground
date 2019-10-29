@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/react": "^9.3.0",
+    "chai": "^4.2.0",
     "moleculer": "^0.13.11",
     "moleculer-web": "^0.8.5",
     "nodemon": "^1.19.4",
