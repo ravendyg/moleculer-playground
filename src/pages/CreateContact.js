@@ -20,7 +20,7 @@ export function CreateContact() {
   async function submit(e) {
     e.preventDefault();
     await createContact(name, email);
-    history.push('/');
+    history.goBack();
   }
 
   function cancel() {

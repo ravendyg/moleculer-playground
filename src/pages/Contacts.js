@@ -8,6 +8,7 @@ import {
   useHistory,
   Link,
 } from 'react-router-dom';
+import { config } from '../config';
 
 import { fetchContacts } from '../api';
 
@@ -24,8 +25,6 @@ function Contact(props) {
     </tr>
   )
 }
-
-const pageSize = 10;
 
 function Pagination(props) {
   const {
@@ -71,7 +70,7 @@ export function Contacts() {
 
   useEffect(() => {
     async function getContacts() {
-      const { data, hasMore } = await fetchContacts(page, pageSize);
+      const { data, hasMore } = await fetchContacts(page, config.PAGE_SIZE);
       setContacts(data);
       setHasNext(hasMore);
     }
