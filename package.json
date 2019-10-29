@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start:ui": "REACT_APP_API_HOST=localhost:3001 react-scripts start",
-    "start:back": "nodemon app.js",
+    "start:back": "nodemon app.js --ignore data",
     "build": "react-scripts build",
     "test": "react-scripts test"
   },
