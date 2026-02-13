@@ -6,12 +6,12 @@
     "@testing-library/react": "^9.3.0",
     "chai": "^4.2.0",
     "moleculer": "^0.13.11",
-    "moleculer-web": "^0.8.5",
+    "moleculer-web": "^0.10.8",
     "nodemon": "^1.19.4",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start:ui": "REACT_APP_API_HOST=localhost:3001 react-scripts start",
